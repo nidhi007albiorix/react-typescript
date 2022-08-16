@@ -7,13 +7,18 @@ import Box from "./components/context/Box";
 import { ThemeContextProvider } from "./components/context/ThemeContext";
 import Greet from "./components/Greet";
 import Heading from "./components/Heading";
+import CustomButton from "./components/html/CustomButton";
+import CustomComp from "./components/html/CustomComp";
 import InputComp from "./components/InputComp";
 import Oscar from "./components/Oscar";
 import Person from "./components/Person";
 import PersonList from "./components/PersonList";
+import Text from "./components/polymorphic/Text";
+import RandomNumbers from "./components/RandomNumbers";
 import { DomRef } from "./components/ref/DomRef";
 import Couter from "./components/state/Couter";
 import Status from "./components/Status";
+import Toast from "./components/Toast";
 import User from "./components/User";
 
 
@@ -55,36 +60,58 @@ function App() {
 
 
       {/* optional props */}
-      <Conditional  name='Nidhi' isLoggedIn={true} />
+      <Conditional name='Nidhi' isLoggedIn={true} />
 
 
       {/* handling event */}
 
-      <Button handleClick={(event)=>{
+      <Button handleClick={(event) => {
         console.log(event)
-      }}/>
-      <InputComp value='' handleChange={(e)=>console.log(e.target.value)}/>
+      }} />
+      <InputComp value='' handleChange={(e) => console.log(e.target.value)} />
 
 
       {/* style props */}
-      <Container styles={{border:"2px solid black", padding:"2px", margin:"2rem"}}/>
+      <Container styles={{ border: "2px solid black", padding: "2px", margin: "2rem" }} />
 
       {/*  useState Future Value */}
-        <User/>
+      <User />
 
-        {/* useReducer */}
-        <Couter/>
+      {/* useReducer */}
+      <Couter />
 
-        {/* useContext */}
-        <ThemeContextProvider>
-          <Box/>
-        </ThemeContextProvider>
+      {/* useContext */}
+      <ThemeContextProvider>
+        <Box />
+      </ThemeContextProvider>
 
-        {/* useRef */}
-        <DomRef/>
+      {/* useRef */}
+      <DomRef />
 
-        {/* Component prop */}
-        <Private isLoggedIn={true} component={Profile}/>
+      {/* Component prop */}
+      <Private isLoggedIn={true} component={Profile} />
+
+      {/* restricting props */}
+      <RandomNumbers value={10} isPositive />
+
+      {/* template litterals and excludes */}
+      <Toast position="Bottom-Center" />
+      <Toast position="Center"/>
+
+
+      {/* Wrapping HTML elements */}
+      <CustomButton varient="primary" onClick={()=>console.log("check")}>
+        Primary Button
+      </CustomButton>
+
+      {/* Extracting a Components Prop Types */}
+      <CustomComp name='Nidhi' messageCount={10} isLoggedIn={false} />
+
+      {/* Polymorphic Components */}
+      <Text size="lg" as="h1">Heading</Text>
+      <Text size="md" as="h3">sub heading</Text>
+      <Text size="sm" htmlFor='someId' color="secondary" as="label">label</Text>
+
     </div>
   );
 }
